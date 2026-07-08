@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Retro Zone — acervo digital de jogos retrô: SNES, Mega Drive e mais.">
+    <title>Retro Zone - Acervo Retrô</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="rz-navbar">
+        <a href="#" class="rz-logo display-font">RETRO<span>ZONE</span></a>
+        <div class="rz-nav-links">
+            <a href="#sobre">SOBRE</a>
+            <a href="#acervo">ACERVO</a>
+            <a href="#contato">CONTATO</a>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <span class="eyebrow">ACERVO PESSOAL · DESDE 2026</span>
+            <h1>🕹️ Retro Zone</h1>
+            <p class="slogan">Reviva a era de ouro dos videogames: SNES, Mega Drive e muito mais.</p>
+            <button id="btn-saiba-mais">Saiba Mais</button>
+        </div>
+    </header>
+
+    <section id="sobre">
+        <div class="section-inner">
+            <span class="section-tag">O projeto</span>
+            <h2>Sobre a Retro Zone</h2>
+            <p>A Retro Zone nasceu da paixão por videogames clássicos. Em vez de um catálogo estático, o acervo
+                é consultado em tempo real: busque qualquer jogo lançado para consoles lendários como Super
+                Nintendo, Mega Drive, Master System e outros, com capa, nota e descrição atualizadas direto da fonte.</p>
+            <ul>
+                <li>✓ Catálogo consultado em tempo real via API</li>
+                <li>✓ Busca por nome e filtro por plataforma</li>
+                <li>✓ Ficha detalhada de cada jogo</li>
+                <li>✓ Projeto de estudo em HTML, CSS e JavaScript</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="acervo">
+        <div class="section-inner">
+            <span class="section-tag">Catálogo</span>
+            <h2>Explore o acervo</h2>
+
+            <div class="search-bar">
+                <div class="search-row">
+                    <input type="text" id="busca-jogo" placeholder="Buscar jogo, ex: Chrono Trigger, Sonic, Zelda...">
+                    <button id="btn-buscar-jogo">Buscar</button>
+                </div>
+                <div class="platform-chips" id="platform-chips">
+                    <button class="chip active" data-platform="">TODOS</button>
+                    <button class="chip" data-platform="79">SNES</button>
+                    <button class="chip" data-platform="167">MEGA DRIVE</button>
+                    <button class="chip" data-platform="74">MASTER SYSTEM</button>
+                    <button class="chip" data-platform="49">N64</button>
+                    <button class="chip" data-platform="27">PLAYSTATION</button>
+                </div>
+            </div>
+
+            <p class="results-info" id="results-info"></p>
+            <div class="game-grid" id="game-grid"></div>
+            <p class="rz-state" id="empty-state">Nenhum jogo encontrado. Tente outro nome ou outra plataforma.</p>
+            <p class="rz-state" id="error-state">Não deu pra carregar os jogos agora. Confira sua conexão ou a chave de API e tente de novo.</p>
+
+            <div class="pagination" id="pagination">
+                <button id="btn-pagina-anterior" disabled>&larr; Anterior</button>
+                <span class="pagination-info" id="pagination-info"></span>
+                <button id="btn-proxima-pagina" disabled>Próxima &rarr;</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato">
+        <div class="section-inner">
+            <span class="section-tag">Fale com a gente</span>
+            <h2>Contato</h2>
+            <form id="form-contato">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="mensagem">Mensagem:</label>
+                <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+
+                <button type="submit">Enviar</button>
+            </form>
+            <p id="mensagem-agradecimento"></p>
+        </div>
+    </section>
+
+    <!-- Modal de detalhes do jogo (feito sem framework, só HTML/CSS/JS) -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="modal-title"></h3>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Retro Zone. Todos os direitos reservados.</p>
+        <p>Dados fornecidos por <a href="https://rawg.io" target="_blank">RAWG Video Games Database</a>.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

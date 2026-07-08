@@ -1,0 +1,607 @@
+/* ==========================================
+   RESET BÁSICO
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Importar fontes do Google Fonts:
+   - Bungee: fonte de "letreiro de loja", usada nos títulos
+   - Space Mono: fonte estilo etiqueta/máquina de escrever, usada em dados
+   - Work Sans: fonte de leitura, usada no corpo do texto */
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;500;600;700&display=swap');
+
+/* ==========================================
+   VARIÁVEIS DE COR (tema "locadora retrô")
+   ========================================== */
+:root {
+    /* Petróleo (carpete de locadora antiga) */
+    --rz-bg: #0f2620;
+    --rz-bg-alt: #163530;
+    --rz-panel: #1b3c36;
+    /* Etiqueta / papel envelhecido */
+    --rz-tag: #f4e6c8;
+    --rz-tag-ink: #22201a;
+    /* Sinalização de loja */
+    --rz-mustard: #e8a33d;
+    --rz-rust: #c1502e;
+    --rz-text: #f2ede0;
+    --rz-muted: #9db3a8;
+    --rz-border: #2c4d45;
+}
+
+html {
+    scroll-behavior: smooth; /* faz os links do menu rolarem suavemente até a seção */
+}
+
+body {
+    background-color: var(--rz-bg);
+    color: var(--rz-text);
+    font-family: 'Work Sans', sans-serif;
+    line-height: 1.6;
+}
+
+/* Textura de "grão" sutil por cima de toda a página, pra não ficar
+   com aparência muito "digital/chapada" */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2000;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.display-font {
+    font-family: 'Bungee', system-ui, sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.mono-font {
+    font-family: 'Space Mono', monospace;
+}
+
+section {
+    scroll-margin-top: 5rem; /* evita que a navbar fixa cubra o título ao rolar até a seção */
+}
+
+/* ==========================================
+   NAVBAR
+   ========================================== */
+.rz-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 15px 20px;
+    background-color: var(--rz-bg-alt);
+    border-bottom: 3px solid var(--rz-mustard);
+}
+
+.rz-logo {
+    font-size: 18px;
+    color: var(--rz-tag);
+    text-decoration: none;
+}
+.rz-logo span {
+    color: var(--rz-rust);
+}
+
+.rz-nav-links {
+    display: flex;
+    gap: 20px;
+}
+.rz-nav-links a {
+    color: var(--rz-muted);
+    text-decoration: none;
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+}
+.rz-nav-links a:hover {
+    color: var(--rz-tag);
+}
+
+/* ==========================================
+   CABEÇALHO / HERO
+   ========================================== */
+header {
+    padding: 60px 20px 50px;
+    background:
+        repeating-linear-gradient(135deg, rgba(232,163,61,0.05) 0 2px, transparent 2px 14px),
+        var(--rz-bg);
+    border-bottom: 1px solid var(--rz-border);
+}
+
+header .container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.eyebrow {
+    display: inline-block;
+    background-color: var(--rz-rust);
+    color: var(--rz-tag);
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 2px;
+    margin-bottom: 15px;
+    transform: rotate(-1.5deg);
+}
+
+header h1 {
+    font-family: 'Bungee', sans-serif; /* a fonte de letreiro, usada só no título */
+    color: var(--rz-tag);
+    font-size: 42px;
+    margin-bottom: 15px;
+    text-shadow: 3px 3px 0 var(--rz-rust);
+}
+
+.slogan {
+    font-size: 18px;
+    color: var(--rz-muted);
+    margin-bottom: 25px;
+    max-width: 600px;
+}
+
+/* ==========================================
+   BOTÕES
+   ========================================== */
+button,
+.btn-outline {
+    border: none;
+    padding: 12px 26px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-family: 'Work Sans', sans-serif;
+}
+
+button {
+    background-color: var(--rz-mustard);
+    color: #241a06;
+}
+button:hover {
+    background-color: #f5b658;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--rz-mustard);
+    color: var(--rz-mustard);
+    text-decoration: none;
+    display: inline-block;
+}
+.btn-outline:hover {
+    background-color: var(--rz-mustard);
+    color: #241a06;
+}
+
+/* ==========================================
+   SEÇÕES (Sobre, Acervo, Contato)
+   ========================================== */
+section {
+    padding: 50px 20px;
+}
+
+.section-inner {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+#sobre {
+    background-color: var(--rz-bg-alt);
+    border-bottom: 1px solid var(--rz-border);
+}
+
+section h2 {
+    font-family: 'Bungee', sans-serif;
+    color: var(--rz-tag);
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.section-tag {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--rz-mustard);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+#sobre p {
+    color: var(--rz-muted);
+    max-width: 42rem;
+}
+
+#sobre ul {
+    list-style: none;
+    margin-top: 20px;
+}
+#sobre li {
+    padding: 10px 0;
+    color: var(--rz-text);
+    border-bottom: 1px dashed var(--rz-border);
+}
+#sobre li:last-child {
+    border-bottom: none;
+}
+
+/* ==========================================
+   ACERVO (catálogo de jogos)
+   ========================================== */
+#acervo .section-inner {
+    max-width: 1100px;
+}
+
+.search-bar {
+    background-color: var(--rz-panel);
+    border: 1px solid var(--rz-border);
+    border-radius: 6px;
+    padding: 18px;
+}
+
+.search-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.search-row input {
+    flex: 1;
+    min-width: 200px;
+}
+
+.search-row button {
+    min-width: 140px;
+}
+
+.platform-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.chip {
+    border: 1px dashed var(--rz-border);
+    background-color: var(--rz-bg-alt);
+    color: var(--rz-muted);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+.chip:hover {
+    border-color: var(--rz-mustard);
+    color: var(--rz-text);
+}
+.chip.active {
+    background-color: var(--rz-rust);
+    border-color: var(--rz-rust);
+    border-style: solid;
+    color: var(--rz-tag);
+}
+
+.results-info {
+    font-family: 'Space Mono', monospace;
+    color: var(--rz-muted);
+    font-size: 13px;
+    margin: 20px 0 15px;
+}
+
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+@media (min-width: 700px) {
+    .game-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 950px) {
+    .game-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Card de jogo, estilo "caixinha de locadora" */
+.game-card {
+    background-color: var(--rz-panel);
+    border: 1px solid var(--rz-border);
+    border-radius: 6px;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+.game-card:hover {
+    transform: translateY(-4px) rotate(-0.5deg);
+}
+
+.game-card-cover {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px 6px 0 0;
+}
+.game-card-cover img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    display: block;
+    background-color: var(--rz-bg-alt);
+}
+
+/* Etiqueta de preço no canto do card, tipo etiqueta de locadora */
+.price-tag {
+    position: absolute;
+    top: -10px;
+    right: -8px;
+    background-color: var(--rz-tag);
+    color: var(--rz-tag-ink);
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 4px 8px;
+    border-radius: 2px;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.35);
+    transform: rotate(4deg);
+    z-index: 3;
+}
+
+.game-card-body {
+    padding: 15px 14px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-card-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.label-strip {
+    margin-top: auto;
+    background-color: var(--rz-bg-alt);
+    border: 1px dashed var(--rz-border);
+    border-radius: 2px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--rz-mustard);
+    padding: 5px 8px;
+    text-align: center;
+}
+
+.rz-state {
+    color: var(--rz-muted);
+    text-align: center;
+    padding: 40px 15px;
+    font-family: 'Space Mono', monospace;
+    display: none; /* fica escondido até o JS mostrar quando precisar */
+}
+.rz-state.show { display: block; }
+
+/* ==========================================
+   PAGINAÇÃO
+   ========================================== */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.pagination button {
+    background-color: var(--rz-bg-alt);
+    border: 1px solid var(--rz-border);
+    color: var(--rz-text);
+    padding: 10px 18px;
+    font-size: 14px;
+}
+.pagination button:hover:not(:disabled) {
+    background-color: var(--rz-mustard);
+    color: #241a06;
+}
+.pagination button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.pagination-info {
+    font-family: 'Space Mono', monospace;
+    color: var(--rz-muted);
+    font-size: 13px;
+    min-width: 90px;
+    text-align: center;
+}
+
+/* Efeito de "carregando" (skeleton) enquanto a API responde */
+.skeleton {
+    background: linear-gradient(90deg, var(--rz-panel) 25%, var(--rz-bg-alt) 50%, var(--rz-panel) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.3s infinite;
+    border-radius: 6px;
+    height: 280px;
+}
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* ==========================================
+   MODAL DE DETALHES DO JOGO
+   ========================================== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.modal-overlay.show {
+    display: flex;
+}
+
+.modal-box {
+    background-color: var(--rz-panel);
+    border: 1px solid var(--rz-border);
+    border-radius: 8px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--rz-border);
+}
+
+.modal-header h3 {
+    font-family: 'Bungee', sans-serif;
+    font-size: 17px;
+    color: var(--rz-tag);
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--rz-muted);
+    font-size: 22px;
+    cursor: pointer;
+    padding: 0 5px;
+}
+.modal-close:hover {
+    color: var(--rz-tag);
+    background: none;
+}
+
+.modal-body {
+    padding: 20px;
+}
+.modal-body img {
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+.modal-body p {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: var(--rz-muted);
+    margin-bottom: 8px;
+}
+.modal-body strong {
+    color: var(--rz-mustard);
+}
+.modal-description {
+    font-family: 'Work Sans', sans-serif !important;
+    color: var(--rz-text) !important;
+    font-size: 15px !important;
+    margin-top: 12px !important;
+}
+
+/* ==========================================
+   FORMULÁRIO DE CONTATO
+   ========================================== */
+#contato {
+    background-color: var(--rz-bg-alt);
+    border-top: 1px solid var(--rz-border);
+    border-bottom: 1px solid var(--rz-border);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--rz-muted);
+    margin-bottom: -8px;
+}
+
+input,
+textarea {
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid var(--rz-border);
+    background-color: var(--rz-panel);
+    color: var(--rz-text);
+    font-family: 'Work Sans', sans-serif;
+    font-size: 15px;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--rz-mustard);
+    box-shadow: 0 0 0 3px rgba(232, 163, 61, 0.2);
+}
+
+#mensagem-agradecimento {
+    margin-top: 15px;
+    color: var(--rz-mustard);
+    font-family: 'Space Mono', monospace;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* ==========================================
+   RODAPÉ
+   ========================================== */
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: var(--rz-bg-alt);
+    border-top: 3px solid var(--rz-mustard);
+    color: var(--rz-muted);
+    font-size: 13px;
+}
+footer a {
+    color: var(--rz-mustard);
+    text-decoration: none;
+}
+
+/* ==========================================
+   ACESSIBILIDADE / RESPONSIVO
+   ========================================== */
+@media (prefers-reduced-motion: reduce) {
+    .game-card, .skeleton { animation: none; transition: none; }
+    html { scroll-behavior: auto; }
+}
+
+@media (max-width: 576px) {
+    header { padding: 40px 20px 30px; }
+    header h1 { font-size: 30px; }
+}

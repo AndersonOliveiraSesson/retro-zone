@@ -213,10 +213,7 @@ function abrirDetalhesJogo(id) {
                 .map(function (g) { return g.name; })
                 .join(", ");
 
-            let descricao = jogo.description_raw || "Sem descrição disponível.";
-            if (descricao.length > 500) {
-                descricao = descricao.slice(0, 500) + "...";
-            }
+            const descricao = jogo.description_raw || "Sem descrição disponível.";
 
             modalCorpo.innerHTML = `
                 ${jogo.background_image ? `<img src="${jogo.background_image}" alt="Capa de ${jogo.name}">` : ""}

@@ -47,7 +47,7 @@ formContato.addEventListener("submit", function (evento) {
    ========================================== */
 
 // CONFIG — crie uma conta gratuita em https://rawg.io/apidocs e cole sua chave aqui:
-const RAWG_API_KEY = "7e290bd49090438dbb0dc8e4255d0fd4";
+const RAWG_API_KEY = "COLE_SUA_CHAVE_AQUI";
 const RAWG_BASE_URL = "https://api.rawg.io/api";
 
 // Busca os elementos da tela que vamos usar várias vezes
@@ -218,18 +218,44 @@ function abrirDetalhesJogo(id) {
                 descricao = descricao.slice(0, 500) + "...";
             }
 
+            // Primeiro mostra tudo, com a descrição ainda em inglês e um aviso de "traduzindo"
             modalCorpo.innerHTML = `
                 ${jogo.background_image ? `<img src="${jogo.background_image}" alt="Capa de ${jogo.name}">` : ""}
                 <p><strong>Plataformas:</strong> ${plataformas || "—"}</p>
                 <p><strong>Gêneros:</strong> ${generos || "—"}</p>
                 <p><strong>Lançamento:</strong> ${jogo.released || "—"} &nbsp;|&nbsp; ★ ${jogo.rating ? jogo.rating.toFixed(1) : "—"}</p>
-                <p class="modal-description">${descricao}</p>
+                <p class="modal-description" id="modal-description">Traduzindo descrição...</p>
             `;
+
+            // Depois, busca a tradução e troca o texto assim que ela chegar
+            traduzirTexto(descricao).then(function (textoTraduzido) {
+                document.getElementById("modal-description").textContent = textoTraduzido;
+            });
         })
         .catch(function (erro) {
             modalTitulo.textContent = "Erro";
             modalCorpo.innerHTML = "<p>Não foi possível carregar os detalhes deste jogo.</p>";
             console.error(erro);
+        });
+}
+
+// Traduz um texto do inglês pro português usando a API gratuita MyMemory.
+// Se der qualquer problema (limite de uso, sem internet, etc.), devolve o texto original.
+function traduzirTexto(texto) {
+    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(texto)}&langpair=en|pt-br`;
+
+    return fetch(url)
+        .then(function (resposta) {
+            return resposta.json();
+        })
+        .then(function (dados) {
+            if (dados && dados.responseData && dados.responseData.translatedText) {
+                return dados.responseData.translatedText;
+            }
+            return texto;
+        })
+        .catch(function () {
+            return texto;
         });
 }
 

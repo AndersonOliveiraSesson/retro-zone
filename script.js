@@ -47,7 +47,7 @@ formContato.addEventListener("submit", function (evento) {
    ========================================== */
 
 // CONFIG — crie uma conta gratuita em https://rawg.io/apidocs e cole sua chave aqui:
-const RAWG_API_KEY = "COLE_SUA_CHAVE_AQUI";
+const RAWG_API_KEY = "7e290bd49090438dbb0dc8e4255d0fd4";
 const RAWG_BASE_URL = "https://api.rawg.io/api";
 
 // Busca os elementos da tela que vamos usar várias vezes

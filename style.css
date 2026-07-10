@@ -528,6 +528,69 @@ section h2 {
 }
 
 /* ==========================================
+   JOGAR (links externos legítimos)
+   ========================================== */
+#jogar {
+    background-color: var(--rz-bg-alt);
+    border-bottom: 1px solid var(--rz-border);
+}
+
+.jogar-aviso {
+    color: var(--rz-muted);
+    font-size: 14px;
+    max-width: 42rem;
+    margin-bottom: 25px;
+}
+
+.jogar-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+.jogar-card {
+    display: block;
+    background-color: var(--rz-panel);
+    border: 1px solid var(--rz-border);
+    border-radius: 6px;
+    padding: 18px;
+    text-decoration: none;
+    color: var(--rz-text);
+    transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.jogar-card:hover {
+    transform: translateY(-4px) rotate(-0.5deg);
+    border-color: var(--rz-mustard);
+}
+
+.jogar-card-tag {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--rz-mustard);
+    background-color: var(--rz-bg-alt);
+    border: 1px dashed var(--rz-border);
+    border-radius: 2px;
+    padding: 3px 8px;
+    margin-bottom: 10px;
+}
+
+.jogar-card h3 {
+    font-family: 'Bungee', sans-serif;
+    font-size: 15px;
+    color: var(--rz-tag);
+    margin-bottom: 8px;
+}
+
+.jogar-card p {
+    font-size: 13px;
+    color: var(--rz-muted);
+    line-height: 1.5;
+}
+
+/* ==========================================
    FORMULÁRIO DE CONTATO
    ========================================== */
 #contato {

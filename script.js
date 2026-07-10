@@ -46,7 +46,7 @@ formContato.addEventListener("submit", function (evento) {
    3. ACERVO DE JOGOS (API RAWG)
    ========================================== */
 
-// CONFIG — crie uma conta gratuita em https://rawg.io/apidocs e cole sua chave aqui:
+// criei uma conta gratuita em https://rawg.io/apidocs e colei minha chave aqui:
 const RAWG_API_KEY = "7e290bd49090438dbb0dc8e4255d0fd4";
 const RAWG_BASE_URL = "https://api.rawg.io/api";
 
